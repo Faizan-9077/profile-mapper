@@ -1,0 +1,26 @@
+.admin-page {
+    padding: 20px;
+  }
+  
+  .admin-form {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .profiles-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .admin-profile-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .admin-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }

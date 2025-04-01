@@ -1,0 +1,28 @@
+.map-container {
+    height: 400px;
+    width: 100%;
+    margin: 1rem 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .map-toggle-button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .close-map-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }

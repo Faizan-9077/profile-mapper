@@ -1,7 +1,7 @@
-// src/components/ProfileList.jsx
+
 import ProfileCard from './ProfileCard';
 
-// ProfileList.jsx
+
 export default function ProfileList({ profiles, onProfileSelect, onEdit, onDelete, adminMode = false }) {
   return (
     <div className="profile-list">
@@ -19,4 +19,4 @@ export default function ProfileList({ profiles, onProfileSelect, onEdit, onDelet
   );
 }
 
-// Make sure this is exported as default
+

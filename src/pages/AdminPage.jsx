@@ -5,7 +5,7 @@ import ProfileList from '../components/ProfileList';
 import './AdminPage.css';
 
 export default function AdminPage() {
-  // Get all context values at once inside the component
+  
   const { profiles, addProfile, updateProfile, deleteProfile } = useContext(ProfileContext);
   
   const [formData, setFormData] = useState({
@@ -19,17 +19,17 @@ export default function AdminPage() {
   });
   const [editingId, setEditingId] = useState(null);
 
-  // Handle input changes
+ 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission (Add/Update)
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Ensure interests is a string before splitting
+   
     const formattedInterests = Array.isArray(formData.interests) 
       ? formData.interests 
       : (formData.interests || "").toString().split(',').map(i => i.trim());
@@ -45,14 +45,13 @@ export default function AdminPage() {
       } else {
         await addProfile({ ...profileData, id: Date.now() });  // Add new profile
       }
-      resetForm();  // Reset form after submission
+      resetForm();  
     } catch (err) {
       console.error('Failed to submit profile:', err);
     }
   };
   
 
-  // Handle editing a profile
   const handleEdit = (profile) => {
     setFormData({
       ...profile,
@@ -61,7 +60,7 @@ export default function AdminPage() {
     setEditingId(profile.id);
   };
 
-  // Reset the form
+ 
   const resetForm = () => {
     setFormData({
       id: '',

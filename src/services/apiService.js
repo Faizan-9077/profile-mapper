@@ -1,19 +1,19 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || "https://jsonplaceholder.typicode.com";
+const API_BASE_URL = process.env.REACT_APP_API_URL || "https://ideal-memory-5g4wwqwprjjw279pj-3000.app.github.dev";
 
-// Function to handle and process response
+
 const handleResponse = async (response) => {
   const contentType = response.headers.get("content-type");
 
   if (!response.ok) {
     let errorMessage = "Request failed";
 
-    // If the response is JSON, extract the error message
+   
     if (contentType && contentType.includes("application/json")) {
       const errorData = await response.json();
       console.error("API Error:", errorData);
       errorMessage = errorData.message || errorMessage;
     } else {
-      // Log the raw response for debugging
+    
       const rawResponse = await response.text();
       console.error("Unexpected Response (Not JSON):", rawResponse);
       errorMessage = "Unexpected response from server.";
@@ -25,7 +25,7 @@ const handleResponse = async (response) => {
   return response.json();
 };
 
-// Fetch profiles (JSONPlaceholder doesn't have profiles, using 'users')
+
 export const fetchProfiles = async () => {
   try {
     console.log("Fetching profiles from:", `${API_BASE_URL}/users`);
@@ -37,7 +37,7 @@ export const fetchProfiles = async () => {
   }
 };
 
-// Create new profile (This won't actually persist because JSONPlaceholder is read-only)
+
 export const createProfile = async (profileData) => {
   try {
     console.log("Sending profile data:", profileData);
@@ -55,7 +55,7 @@ export const createProfile = async (profileData) => {
   }
 };
 
-// Update an existing profile (This won't actually persist)
+
 export const updateProfile = async (id, profileData) => {
   try {
     console.log("Updating profile data:", profileData);
@@ -71,7 +71,7 @@ export const updateProfile = async (id, profileData) => {
   }
 };
 
-// Delete a profile (This won't actually delete since JSONPlaceholder is read-only)
+
 export const deleteProfile = async (id) => {
   try {
     console.log("Deleting profile with ID:", id);
@@ -85,6 +85,6 @@ export const deleteProfile = async (id) => {
   }
 };
 
-// Log the API base URL to check
+
 console.log("API Base URL:", API_BASE_URL);
 console.log("process.env.REACT_APP_API_URL:", process.env.REACT_APP_API_URL);

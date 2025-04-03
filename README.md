@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Profile Mapper
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+Profile Mapper is a React-based web application that aims to provide a mapping solution for user profiles. It integrates Google Maps for location-based features and utilizes JSONPlaceholder for API interactions (placeholder data for now).
 
-## Available Scripts
+## Installation
+To set up the project locally, follow these steps:
 
-In the project directory, you can run:
+1. Clone the repository:
+   ```sh
+   git clone <repo-link>
+   cd profile-mapper
+   ```
 
-### `npm start`
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. Start the development server:
+   ```sh
+   npm start
+   ```
+   The app should be accessible at `http://localhost:4000` or the forwarded GitHub Codespaces URL.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
+- **React** (Frontend framework)
+- **React Router** (Navigation)
+- **Google Maps API** (Mapping functionality)
+- **MUI** (Material UI for styling)
+- **JSONPlaceholder** (Mock API for testing)
 
-### `npm test`
+## Known Issues
+This project is still a work in progress and has several errors that need fixing. Some key issues include:
+- API requests may not be fully functional.
+- Mapping features may not work as expected.
+- UI is not finalized.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Future Improvements
+- Integrate a real backend instead of JSONPlaceholder.
+- Improve UI and error handling.
+- Enhance search and filtering functionalities.
 
-### `npm run build`
+## Contributors
+- **Faizan** (Developer)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Notes
+This project is currently incomplete and under development. It is being submitted as part of an internship application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Disclaimer
+This repository is a work in progress and may not function as expected. Contributions and improvements are welcome!
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

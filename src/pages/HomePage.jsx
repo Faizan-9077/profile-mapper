@@ -15,15 +15,14 @@ export default function HomePage() {
   const [mapLoading, setMapLoading] = useState(false);
   const [mapError, setMapError] = useState(null);
 
-  // Admin action handlers
   const handleEdit = (profile) => {
     console.log('Edit profile:', profile);
-    // Implement actual edit logic here
+
   };
 
   const handleDelete = (id) => {
     console.log('Delete profile ID:', id);
-    // Implement actual delete logic here
+    
   };
 
   const filteredProfiles = profiles.filter(profile =>

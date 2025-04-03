@@ -21,7 +21,7 @@ To set up the project locally, follow these steps:
    ```sh
    npm start
    ```
-   The app should be accessible at `http://localhost:4000` or the forwarded GitHub Codespaces URL.
+   The app should be accessible at `http://localhost:4000` or the forwarded GitHub Codespaces URL
 
 ## Technologies Used
 - **React** (Frontend framework)

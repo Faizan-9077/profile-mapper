@@ -2,6 +2,7 @@
   "name": "profile-mapper",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://jsonplaceholder.typicode.com",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -19,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --disable-host-check --no-ws",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

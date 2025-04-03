@@ -4,7 +4,7 @@ import { TextField, Button, Box, Paper, Typography } from '@mui/material';
 import ProfileList from '../components/ProfileList';
 import './AdminPage.css';
 
-function AdminPage() {
+export default function AdminPage() {
   // Get all context values at once inside the component
   const { profiles, addProfile, updateProfile, deleteProfile } = useContext(ProfileContext);
   
@@ -19,26 +19,40 @@ function AdminPage() {
   });
   const [editingId, setEditingId] = useState(null);
 
+  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  // Handle form submission (Add/Update)
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Ensure interests is a string before splitting
+    const formattedInterests = Array.isArray(formData.interests) 
+      ? formData.interests 
+      : (formData.interests || "").toString().split(',').map(i => i.trim());
+  
     const profileData = {
       ...formData,
-      interests: formData.interests.split(',').map(i => i.trim())
+      interests: formattedInterests  // Assign the correctly formatted interests array
     };
-
-    if (editingId) {
-      updateProfile({ ...profileData, id: editingId });
-    } else {
-      addProfile({ ...profileData, id: Date.now() });
+  
+    try {
+      if (editingId) {
+        await updateProfile(editingId, profileData);  // Update profile
+      } else {
+        await addProfile({ ...profileData, id: Date.now() });  // Add new profile
+      }
+      resetForm();  // Reset form after submission
+    } catch (err) {
+      console.error('Failed to submit profile:', err);
     }
-    resetForm();
   };
+  
 
+  // Handle editing a profile
   const handleEdit = (profile) => {
     setFormData({
       ...profile,
@@ -47,6 +61,7 @@ function AdminPage() {
     setEditingId(profile.id);
   };
 
+  // Reset the form
   const resetForm = () => {
     setFormData({
       id: '',
@@ -143,4 +158,4 @@ function AdminPage() {
   );
 }
 
-export default AdminPage;
+

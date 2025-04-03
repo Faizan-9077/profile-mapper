@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { ProfileContext } from '../context/ProfileContext';
 import { geocodeAddress } from '../services/mapService';
 import MapComponent from '../components/MapComponent';
-import ProfileList from '../components/ProfileList';
+import ProfileList from '../components/ProfileList'; // Verify this import path
 import SearchFilter from '../components/SearchFilter';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
@@ -14,6 +14,17 @@ export default function HomePage() {
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [mapLoading, setMapLoading] = useState(false);
   const [mapError, setMapError] = useState(null);
+
+  // Admin action handlers
+  const handleEdit = (profile) => {
+    console.log('Edit profile:', profile);
+    // Implement actual edit logic here
+  };
+
+  const handleDelete = (id) => {
+    console.log('Delete profile ID:', id);
+    // Implement actual delete logic here
+  };
 
   const filteredProfiles = profiles.filter(profile =>
     profile.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -52,6 +63,9 @@ export default function HomePage() {
       <ProfileList 
         profiles={filteredProfiles} 
         onProfileSelect={handleProfileSelect}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+        adminMode={false}
       />
       
       {selectedProfile && (

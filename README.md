@@ -1,54 +1,58 @@
-# Profile Mapper
+# 🌍 Profile Mapper
 
-## Overview
-Profile Mapper is a React-based web application that aims to provide a mapping solution for user profiles. It integrates Google Maps for location-based features and utilizes JSONPlaceholder for API interactions (placeholder data for now).
+A React-based profile management web application with map integration. Users and admins can view profile details along with their geolocation rendered via static maps powered by Google Maps. Built for clarity, modularity, and a better user/admin experience.
 
-## Installation
-To set up the project locally, follow these steps:
+## ✨ Features
 
-1. Clone the repository:
-   ```sh
-   git clone <repo-link>
-   cd profile-mapper
+- 🔍 Geocoding with Google Maps API
+- 🗺️ Static map rendering for profile locations
+- 👤 Separate User and Admin views
+- 📍 Click-to-view map modal in Admin dashboard
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React
+- **Geocoding & Maps**: Google Maps API
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+- Node.js (v14 or higher)
+- npm or yarn
+- A Google Maps API key
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/profile-mapper.git
+cd profile-mapper
+npm install
+```
+
+### Running the App
+
+1. Create a `.env` file and add your Google Maps API key:
+   ```
+   REACT_APP_GOOGLE_MAPS_API_KEY=your_api_key_here
    ```
 
-2. Install dependencies:
-   ```sh
-   npm install
-   ```
+2. Start the development server:
 
-3. Start the development server:
-   ```sh
-   npm start
-   ```
-   The app should be accessible at `http://localhost:4000` or the forwarded GitHub Codespaces URL
+```bash
+npm start
+```
 
-## Technologies Used
-- **React** (Frontend framework)
-- **React Router** (Navigation)
-- **Google Maps API** (Mapping functionality)
-- **MUI** (Material UI for styling)
-- **JSONPlaceholder** (Mock API for testing)
+The app will be running at http://localhost:3000
 
-## Known Issues
-This project is still a work in progress and has several errors that need fixing. Some key issues include:
-- API requests may not be fully functional.
-- Mapping features may not work as expected.
-- UI is not finalized.
+## 🌐 Map Integration Details
 
-## Future Improvements
-- Integrate a real backend instead of JSONPlaceholder.
-- Improve UI and error handling.
-- Enhance search and filtering functionalities.
+- `geocodeAddress(address)`: Converts an address into latitude and longitude using Google Maps Geocoding API.
+- `getStaticMapUrl(lat, lon)`: Generates a static Google Maps image URL using coordinates.
+- Admin dashboard displays a modal with the map when "View" is clicked, ensuring clean UI and performance.
 
-## Contributors
-- **Faizan** (Developer)
 
-## Notes
-This project is currently incomplete and under development. It is being submitted as part of an internship application.
+## 🙌 Contributing
 
----
-
-### Disclaimer
-This repository is a work in progress and may not function as expected. Contributions and improvements are welcome!
-
+Pull requests are welcome! For major changes, open an issue to discuss what you’d like to improve or add.

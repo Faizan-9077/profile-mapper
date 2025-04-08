@@ -1,12 +1,17 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
+import { geocodeAddress } from '../services/mapService'; 
 import { ProfileContext } from '../context/ProfileContext';
 import { TextField, Button, Box, Paper, Typography } from '@mui/material';
 import ProfileList from '../components/ProfileList';
 import './AdminPage.css';
 
+
+
+
 export default function AdminPage() {
   
   const { profiles, addProfile, updateProfile, deleteProfile } = useContext(ProfileContext);
+  const formRef = useRef(null); 
   
   const [formData, setFormData] = useState({
     id: '',
@@ -15,7 +20,9 @@ export default function AdminPage() {
     address: '',
     shortDescription: '',
     email: '',
-    interests: []
+    interests: [],
+    lat: null,      
+    lng: null  
   });
   const [editingId, setEditingId] = useState(null);
 
@@ -26,39 +33,62 @@ export default function AdminPage() {
   };
 
  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ 
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const formattedInterests = Array.isArray(formData.interests)
+    ? formData.interests
+    : (formData.interests || "").toString().split(',').map(i => i.trim());
+
+  try {
     
-   
-    const formattedInterests = Array.isArray(formData.interests) 
-      ? formData.interests 
-      : (formData.interests || "").toString().split(',').map(i => i.trim());
-  
+    const geo = await geocodeAddress(formData.address);
+
     const profileData = {
       ...formData,
-      interests: formattedInterests  // Assign the correctly formatted interests array
+      interests: formattedInterests,
+      lat: geo.lat,
+      lng: geo.lng,
+      address: geo.formattedAddress  // replace raw address with Google's version
     };
-  
-    try {
-      if (editingId) {
-        await updateProfile(editingId, profileData);  // Update profile
-      } else {
-        await addProfile({ ...profileData, id: Date.now() });  // Add new profile
-      }
-      resetForm();  
-    } catch (err) {
-      console.error('Failed to submit profile:', err);
+
+    if (editingId) {
+      await updateProfile(editingId, profileData);
+    } else {
+      await addProfile({ ...profileData, id: Date.now() });
     }
-  };
-  
+
+    resetForm();  
+
+  } catch (err) {
+    console.error('Failed to submit profile:', err);
+    alert("Could not geocode address. Please check the address or your API key.");
+  }
+};
+
 
   const handleEdit = (profile) => {
+    const addressObj = profile.address || {};
+  
+    const addressString = [addressObj.street, addressObj.suite, addressObj.city, addressObj.zipcode]
+      .filter(Boolean)
+      .join(', ');
+  
     setFormData({
       ...profile,
+      address: addressString, 
       interests: profile.interests?.join(', ') || ''
     });
+  
     setEditingId(profile.id);
+  
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
+  
 
  
   const resetForm = () => {
@@ -76,7 +106,7 @@ export default function AdminPage() {
 
   return (
     <div className="admin-page">
-      <Paper elevation={3} className="admin-form">
+      <Paper elevation={3} className="admin-form" ref={formRef}>
         <Typography variant="h5" gutterBottom>
           {editingId ? 'Edit Profile' : 'Add New Profile'}
         </Typography>
@@ -156,5 +186,6 @@ export default function AdminPage() {
     </div>
   );
 }
+
 
 

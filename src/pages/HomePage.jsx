@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { ProfileContext } from '../context/ProfileContext';
 import { geocodeAddress } from '../services/mapService';
 import MapComponent from '../components/MapComponent';
-import ProfileList from '../components/ProfileList'; // Verify this import path
+import ProfileList from '../components/ProfileList'; 
 import SearchFilter from '../components/SearchFilter';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
@@ -27,7 +27,13 @@ export default function HomePage() {
 
   const filteredProfiles = profiles.filter(profile =>
     profile.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (profile.address && profile.address.toLowerCase().includes(searchTerm.toLowerCase()))
+    (
+      profile.address &&
+      `${profile.address.street || ''} ${profile.address.city || ''} ${profile.address.zipcode || ''}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    )
+    
   );
 
   const handleProfileSelect = async (profile) => {

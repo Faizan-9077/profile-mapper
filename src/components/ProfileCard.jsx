@@ -1,4 +1,5 @@
 import { Card, CardContent, CardActions, Typography, Button } from '@mui/material';
+import { getStaticMapUrl } from '../services/mapService'; 
 
 export default function ProfileCard({ profile, onProfileSelect, onEdit, onDelete, adminMode }) {
   return (
@@ -16,20 +17,35 @@ export default function ProfileCard({ profile, onProfileSelect, onEdit, onDelete
         <Typography variant="body2" color="text.secondary">
           {profile.shortDescription}
         </Typography>
+
         {profile.address && (
           <Typography variant="body2" mt={1}>
-            {profile.address}
+            {typeof profile.address === 'string'
+              ? profile.address
+              : [profile.address.street, profile.address.suite, profile.address.city, profile.address.zipcode]
+                  .filter(Boolean)
+                  .join(', ')
+            }
           </Typography>
         )}
+
+        {/* SHOW THE STATIC MAP HERE */}
+        {profile.lat && profile.lng && (
+          <img
+            src={getStaticMapUrl(profile.lat, profile.lng)}
+            alt="Map"
+            style={{ width: '100%', marginTop: '10px', borderRadius: '8px' }}
+          />
+        )}
       </CardContent>
-      
+
       {adminMode && (
         <CardActions onClick={e => e.stopPropagation()}>
           <Button 
             size="small" 
             onClick={(e) => {
               e.stopPropagation();
-              onEdit();
+              onEdit(profile); 
             }}
           >
             Edit
@@ -39,14 +55,13 @@ export default function ProfileCard({ profile, onProfileSelect, onEdit, onDelete
             color="error"
             onClick={(e) => {
               e.stopPropagation();
-              onDelete();
+              onDelete(profile.id); 
             }}
           >
             Delete
           </Button>
-        </CardActions>
+        </CardActions>      
       )}
     </Card>
   );
 }
-

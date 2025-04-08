@@ -1,11 +1,11 @@
 import { Card, CardContent, CardActions, Typography, Button } from '@mui/material';
 import { getStaticMapUrl } from '../services/mapService'; 
 
-export default function ProfileCard({ profile, onProfileSelect, onEdit, onDelete, adminMode }) {
+export default function ProfileCard({ profile, onClick, onEdit, onDelete, adminMode }) {
   return (
     <Card 
       className="profile-card" 
-      onClick={onProfileSelect}
+      onClick={onClick}
       sx={{ 
         cursor: 'pointer',
         marginBottom: 2,
